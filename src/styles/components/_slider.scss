@@ -1,0 +1,96 @@
+.slider {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__content {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 16px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+
+    & button {
+      background: transparent;
+      border: none;
+
+      &:after{
+        content: '';
+        display: inline-block;
+        height: 10px;
+        width: 10px;
+        border: 2px solid #ffffff;
+      }
+
+      &.prev {
+        &:after {
+          transform: rotate(-45deg);
+          border-bottom: none;
+          border-right: none;
+        }
+      }
+
+      &.next {
+        &:after {
+          transform: rotate(45deg);
+          border-bottom: none;
+          border-left: none;
+        }
+      }
+    }
+  }
+
+  &__navigation {
+    background: #cecece;
+    height: 5px;
+    width: 100%;
+
+    &.is-dot {
+      background: transparent;
+    }
+
+    &-progress {
+      height: inherit;
+      background: #ffff00;
+      transition: width 0.1s ease;
+    }
+
+    &-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      margin-top: 16px;
+
+      &--bullet {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        border: 1px solid #cecece;
+        margin: 0 8px;
+        transition: background 0.2s ease;
+
+        &.active {
+          background: #cecece;
+        }
+      }
+    }
+  }
+
+  & img {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+}
