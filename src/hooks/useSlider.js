@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export default function useSlider({ initialValue = 0, totalItems, isDotNavigation = false, ref }) {
+export default function useSlider({ initialValue = 0, totalItems, isDotNavigation = false }) {
   const [progress, setProgress] = useState(initialValue);
+  const ref = useRef();
+
   useEffect(() => {
     const { scrollWidth: contentScrollWidth, clientWidth: contentWidth, scrollLeft } = ref.current.firstChild;
     !isDotNavigation && setProgress((100 / contentScrollWidth) * (scrollLeft + contentWidth));
@@ -18,7 +20,6 @@ export default function useSlider({ initialValue = 0, totalItems, isDotNavigatio
   }
 
   const handleButton = (e) => {
-    console.log(e)
     const isPrev = e.target.classList.contains('prev');
 
     const { clientWidth } = ref.current.firstChild;
@@ -29,6 +30,7 @@ export default function useSlider({ initialValue = 0, totalItems, isDotNavigatio
 
   return {
     progress,
+    ref,
     updateProgress,
     handleButton
   }

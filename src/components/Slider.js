@@ -1,18 +1,16 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useSlider } from '../hooks';
 
 function Slider({ dotNavigation = false }) {
-  const sliderRef = useRef();
-  const [items] = useState([
+const [items] = useState([
     'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
     'https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
     'https://images.unsplash.com/photo-1593642532454-e138e28a63f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
   ]);
-  const { progress, updateProgress, handleButton } = useSlider({
+  const { progress, ref: sliderRef, updateProgress, handleButton } = useSlider({
     initialValue: 1,
     totalItems: items.length,
     isDotNavigation: dotNavigation,
-    ref: sliderRef
   });
 
   return (
